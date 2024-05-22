@@ -39,23 +39,49 @@ Algoritimo:
 */
 
 function createTable() {
-    defineTableProperties();
+    let table_size = 5;
+    let bingo_numbers = defineTableProperties(table_size);
 
+    let table = document.createElement("table");
+    let t_head = document.createElement("thead");
+    table.appendChild(t_head);
+    let t_body = document.createElement("tbody");
+    table.appendChild(t_body);
+    let th_name = document.createElement("th");
+    th_name.innerHTML = "Nome";
+    th_name.colSpan = table_size;
+    t_body.appendChild(th_name);
+    let tr_letter = document.createElement("tr");
+    let letters = ['B', 'I', 'N', 'G', 'O'];
+    for (let i = 0; i < table_size; i++) {
+        let td_letter = document.createElement("td");
+        td_letter.innerHTML = letters[i];
+        tr_letter.appendChild(td_letter);
+    }
+    t_body.appendChild(tr_letter);
+    for (let i = 0; i < table_size; i++) {
+        let tr_number = document.createElement("tr");
+        for (let j = 0; j < table_size; j++) {
+            let td_number = document.createElement("td");
+            td_number.innerHTML = bingo_numbers[i][j];
+            tr_number.appendChild(td_number);
+        }
+        t_body.appendChild(tr_number);
+    }
+    document.body.appendChild(table);
 }
 
-function defineTableProperties() {
-    let table_size = 5;
-    let B_low = 1, B_max = 16;
-    let B_numbers = populateCategory(B_low, B_max, table_size);
-    let I_low = 16, I_max = 31;
-    let I_numbers = populateCategory(I_low, I_max, table_size);
-    let N_low = 31, N_max = 46;
-    let N_numbers = populateCategory(N_low, N_max, table_size);
-    let G_low = 46, G_max = 61;
-    let G_numbers = populateCategory(G_low, G_max, table_size);
-    let O_low = 61, O_max = 76;
-    let O_numbers = populateCategory(O_low, O_max, table_size);
-    alert(O_numbers);
+function defineTableProperties(size) {
+    let table_size = size;
+    let possible_numbers = [];
+    let rule_n = 1;
+    let increment = 15;
+    for (let i = 0; i < table_size; i++) {
+        possible_numbers[i] = populateCategory(rule_n, rule_n + increment, table_size);
+        rule_n += increment;
+    }
+    alert(possible_numbers);
+    return possible_numbers;
 }
 
 function populateCategory(min, max, repeat_n) {
