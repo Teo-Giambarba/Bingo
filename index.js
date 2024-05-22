@@ -40,7 +40,7 @@ Algoritimo:
 
 function createTable() {
     let table_size = 5;
-    let bingo_numbers = defineTableProperties(table_size);
+    let bingo_numbers = getBingoNumbers(table_size);
 
     let table = document.createElement("table");
     let t_head = document.createElement("thead");
@@ -63,7 +63,7 @@ function createTable() {
         let tr_number = document.createElement("tr");
         for (let j = 0; j < table_size; j++) {
             let td_number = document.createElement("td");
-            td_number.innerHTML = bingo_numbers[i][j];
+            td_number.innerHTML = bingo_numbers[j][i];
             tr_number.appendChild(td_number);
         }
         t_body.appendChild(tr_number);
@@ -71,13 +71,12 @@ function createTable() {
     document.body.appendChild(table);
 }
 
-function defineTableProperties(size) {
-    let table_size = size;
+function getBingoNumbers(size) {
     let possible_numbers = [];
     let rule_n = 1;
     let increment = 15;
-    for (let i = 0; i < table_size; i++) {
-        possible_numbers[i] = populateCategory(rule_n, rule_n + increment, table_size);
+    for (let i = 0; i < size; i++) {
+        possible_numbers[i] = populateCategory(rule_n, rule_n + increment, size);
         rule_n += increment;
     }
     alert(possible_numbers);
