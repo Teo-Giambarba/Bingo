@@ -1,8 +1,16 @@
+main {
+    justify-content: center;
+    flex-direction: row;
+}
+
 table, th, td{
     border-style: solid;
     border-radius: 1px;
     border-width: 1px;
     border-spacing: 0px;
+    padding: 1px;
+    margin: 1px;
+    border-collapse: collapse;
 }
 
 td {    

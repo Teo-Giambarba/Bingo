@@ -54,9 +54,9 @@ function createTable() {
     let tr_letter = document.createElement("tr");
     let letters = ['B', 'I', 'N', 'G', 'O'];
     for (let i = 0; i < table_size; i++) {
-        let td_letter = document.createElement("td");
-        td_letter.innerHTML = letters[i];
-        tr_letter.appendChild(td_letter);
+        let th_letter = document.createElement("th");
+        th_letter.innerHTML = letters[i];
+        tr_letter.appendChild(th_letter);
     }
     t_body.appendChild(tr_letter);
     for (let i = 0; i < table_size; i++) {
@@ -68,7 +68,8 @@ function createTable() {
         }
         t_body.appendChild(tr_number);
     }
-    document.body.appendChild(table);
+    let main = document.querySelector("main");
+    main.appendChild(table);
 }
 
 function getBingoNumbers(size) {
@@ -101,3 +102,5 @@ function getUniqueNumberInRange(min, max, repeat_list) {
     }
     return unique_number;
 }
+
+// FAZER O SORTEIO DO BINGO DE ACORDO COM
