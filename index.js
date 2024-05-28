@@ -48,7 +48,7 @@ function createTable() {
     let t_body = document.createElement("tbody");
     table.appendChild(t_body);
     let th_name = document.createElement("th");
-    th_name.innerHTML = "Nome";
+    th_name.innerHTML = prompt('Qual o seu nome?');
     th_name.colSpan = table_size;
     t_body.appendChild(th_name);
     let tr_letter = document.createElement("tr");
@@ -79,7 +79,7 @@ function getBingoNumbers(size) {
         possible_numbers[i] = populateCategory(rule_n, rule_n + increment, size);
         rule_n += increment;
     }
-    alert(possible_numbers);
+    // alert(possible_numbers); DEBUG
     return possible_numbers;
 }
 
@@ -89,13 +89,14 @@ function populateCategory(min, max, repeat_n) {
     for (let i = 0; i < repeat_n; i ++) {
         let new_number = getUniqueNumberInRange(min, max, repeat_numbers);
         category[i] = new_number;
+        repeat_numbers.push(new_number);
     }
     return category;
 }
 
 function getUniqueNumberInRange(min, max, repeat_list) {
     let unique_number = Math.floor(Math.random() * (max - min) + min); //min is inclusive, max is exclusive!
-    if(unique_number in repeat_list) {
+    if(repeat_list.includes(unique_number)) {
         unique_number = getUniqueNumberInRange(min, max, repeat_list);
     }
     return unique_number;

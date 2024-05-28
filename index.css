@@ -4,3 +4,7 @@ table, th, td{
     border-width: 1px;
     border-spacing: 0px;
 }
+
+td {    
+    text-align: center;
+}
